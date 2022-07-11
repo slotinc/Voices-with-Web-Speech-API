@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leitor de Texto</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+    <header>
+
+    </header>
+
+    <section>
+        Selecione a voz / idioma que deseja utilizar:<br>
+      
+        <select id='listaVoz'></select> <br><br>
+        Digite o texto que deseja ouvir:
+        <br>
+        <textarea id='txtDigitado' rows='5'></textarea><br><br>
+        <button id='btnFalar'>REPRODUZIR A VOZ</button>
+        <button id='btnParar'>PARAR</button>
+    </section>
+
+    <footer>
+        <p>Modified By: Slot Inc</p>
+    </footer>
+
+    <script>
+        var txtDigitado = document.querySelector('#txtDigitado');
+        var listaVoz = document.querySelector('#listaVoz');
+        var btnFalar = document.querySelector('#btnFalar');
+        var btnParar = document.querySelector('#btnParar');
+        var synth = window.speechSynthesis;
+        var voices = [];
+
+        PopulateVoices();
+        if (speechSynthesis !== undefined) {
+            speechSynthesis.onvoiceschanged = PopulateVoices;
+        }
+
+        btnFalar.addEventListener('click', () => {
+            var toSpeak = new SpeechSynthesisUtterance(txtDigitado.value);
+            var selectedVoiceName = listaVoz.selectedOptions[0].getAttribute('data-name');
+            voices.forEach((voice) => {
+                if (voice.name === selectedVoiceName) {
+                    toSpeak.voice = voice;
+                }
+            });
+            toSpeak.volume = 0.9;//volume maximo 0~1
+            toSpeak.rate = 1;//taxa da linguagem verbal
+            synth.speak(toSpeak);
+            btnParar.addEventListener('click', () => {
+                synth.cancel(toSpeak);
+            });
+        });
+
+
+        function PopulateVoices() {
+            voices = synth.getVoices();
+            var selectedIndex = listaVoz.selectedIndex < 0 ? 0 : listaVoz.selectedIndex;
+            listaVoz.innerHTML = '';
+            voices.forEach((voice) => {
+                var listItem = document.createElement('option');
+                listItem.textContent = voice.name;
+                listItem.setAttribute('data-lang', voice.lang);
+                listItem.setAttribute('data-name', voice.name);
+                listaVoz.appendChild(listItem);
+            });
+            listaVoz.selectedIndex = selectedIndex;
+        }
+
+    </script>
+</body>
+
+</html>

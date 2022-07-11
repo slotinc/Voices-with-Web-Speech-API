@@ -1,0 +1,48 @@
+body {
+    background: rgba(33, 33, 228, 0.685);
+    font: normal 15pt Arial;
+}
+
+header {
+    color: white;
+    text-align: center;
+}
+
+section {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 500px;
+    margin: auto;
+    /*centralizar*/
+    box-shadow: 3px 3px 10px rgb(94, 93, 93);
+    /*sombreamendo*/
+}
+
+select {
+    width: 150px;
+}
+
+div {
+    text-align: center;
+    padding: 7px;
+    /*espaço de uma div para outra*/
+}
+
+footer {
+    color: white;
+    text-align: center;
+    font-style: italic;
+}
+
+img {
+    width: 200px;
+}
+
+#txtDigitado {
+    width: 99%;
+}
+
+#listaVoz {
+    width: 100%;
+}
