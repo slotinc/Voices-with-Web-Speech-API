@@ -7,4 +7,4 @@ Utilizando o __*Speech* API__ para ler textos digitados no navegador
 
   ![github_PNG77](https://user-images.githubusercontent.com/101596960/178579071-294150b4-ea14-4e42-a2e0-086630fc6411.png)
 
-[:thumbsup: Me siga no GitHub](www.github.com/slotinc/)
+[:thumbsup: Me siga no GitHub](https://github.com/slotinc/)
